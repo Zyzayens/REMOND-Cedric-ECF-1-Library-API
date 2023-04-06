@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta title="contact book fetcher" name="contact book fetcher">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--script-->
+        <script src="https://kit.fontawesome.com/53b1776084.js" crossorigin="anonymous"></script>
+    <!--styles-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <!--API-->
+        <!--call here-->
+    <title>Contact Book fetcher</title> <!--work on name site-->
+</head>
+<body>
+    <header class="position-sticky sticky-top">
+        <!--Navbar-->
+            <nav class="navbar row justify-content-between bg-secondary"> <!--top nav w/searchbar-->
+                <div class="col-sm-5">
+                    <h1>Expand your mind, one page at a time.</h1>
+                </div>
+
+                <div class="col-sm-3">
+                    <!--search form w/ it's button input : "#research"  button : "#research_button " -->
+                    <label for="research_button">
+                    <input class="form-control me-1" id="research" type="search" placeholder="search" aria-label="search field">                  
+                    </label>
+                    <button class="btn" id="research_button"> 
+                    <span class="fa-solid fa-magnifying-glass" aria-label="search"></span>
+                    </button>
+                </div>
+
+                <div class="col-sm-1"> 
+                    <!--Day/night button-->
+                    <button type="button" class="btn border-light-subtle" id="jour_nuit_toggle" aria-hidden="true">
+                        <span class="fa fa-sun-o" aria-hidden="true"></span>
+                        <span id="jour_nuit_toggle_icon" class="fa fa-toggle-off" aria-hidden="true"></span>
+                        <span class="fa fa-moon-o" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="./index.html" class="nav-link">HOME</a>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle nav-link" href="XXXXXXXX" role="button" data-bs-toggle="dropdown" aria-expanded="false">GENRES</a>
+                            <ul class="dropdown-menu"> <!--change the genres w/ english ones-->
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Adventure">Adventure</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Contemporary">Contemporary</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Anticipation">Dystopian</a></li>                                
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Epistolary">Epistolary</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Fantasy">Fantasy</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Historical&fiction">Historical fiction</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Horror">Horror</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Humor">Humor</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Memoir">Memoir</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Non&fiction">Non-fiction</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Novel">Novel</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Paranormal">Paranormal</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Prose">Prose</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Romance">Romance</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Science fiction">Science fiction</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Steampunk">Steampunk</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Thriller">Thriller</a></li>
+                            </ul>
+                        </div>
+                        <a href="XXXXXXXXX" class="nav-link">BOOKS OF THE WEEK</a> <!--page result with request of books of the week-->
+                    </div>
+                  </div>
+                </div>
+            </nav>
+    </header>
+    <main>
+    </main>
+    <footer class="position-sticky mt-3">
+        <div class="row justify-content-center p-3 bg-secondary-subtle"> 
+            <!--div button anchor top-->
+            <div class="col-sm-2">
+                <a href="#" class="nav-link" aria-label="page up"><span class="fa-solid fa-arrow-up border btn btn-outline-secondary"></span></a>
+            </div>
+            <!--div legal requirement-->
+            <div class="col-sm-2">
+                <a href="./mentions legale.html" class="nav-link">LEGAL NOTICES</a>
+            </div>
+            <!--div contact-->
+            <div class="col-sm-2">
+                <a href="./contact.html" class="nav-link">CONTACT</a>
+            </div>
+        </div>
+    </footer>
+    <!--scripts here-->
+    <script src="./scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/53b1776084.js" crossorigin="anonymous"></script></body>
+</body>
+</html>
