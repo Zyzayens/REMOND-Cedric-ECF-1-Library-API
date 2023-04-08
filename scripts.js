@@ -29,7 +29,6 @@ $(document).ready(function(){
 });
 
 //Page action selector 
-
 $(document).ready(function(){
 
   //if page index
@@ -57,7 +56,7 @@ $(document).ready(function(){
     //if page result
     if (document.location.pathname.includes("search_results.html")) {
       let search_for = location.search;
-      let requestURL = "https://www.googleapis.com/books/v1/volumes" + search_for + "";
+      let requestURL = "https://www.googleapis.com/books/v1/volumes" + search_for;
               $.ajax({
               url : requestURL,
               type : "GET",
@@ -80,25 +79,52 @@ function distibutor (i, result){
   else{
     $("#book_cover_"+i).attr("src" , "./ressources/404.png" ); //change by img 404 default
   };
+  //title
   if (result.items[i].volumeInfo.hasOwnProperty("title")) {
     $("#book_name_"+i).text(result.items[i].volumeInfo.title);
   };
+  //author
   if (result.items[i].volumeInfo.hasOwnProperty("authors")) {
     $("#book_author_"+i).text("Author : " + result.items[i].authors);
+  }
+  else{
+    $("#book_author_"+i).text("Author : not available or unknown"); 
   };
+  //isbn
   if (result.items[i].volumeInfo.hasOwnProperty("industryIdentifiers")) {
     $("#book_isbn_"+i).text("ID : " + result.items[i].volumeInfo.industryIdentifiers[0].identifier);
+  }
+  else{
+    $("#book_isbn_"+i).text("ID : not available");
   };
+  //publication date
   if (result.items[i].volumeInfo.hasOwnProperty("publishedDate")) {
     $("#book_date_"+i).text("1st publication : " + result.items[i].volumeInfo.publishedDate);
+  }
+  else{
+    $("#book_date_"+i).text("1st publication : not available"); 
   };
+  //tags
   if (result.items[i].volumeInfo.hasOwnProperty("categories")) {
     $("#book_misc_"+i).text("Tags : " + result.items[i].volumeInfo.categories);
+  }
+  else{
+    $("#book_misc_"+i).text("Tags : not available");
   };
+  //synopsis
   if (result.items[i].volumeInfo.hasOwnProperty("description")) {
     $("#book_synopsis_"+i).text( result.items[i].volumeInfo.description);
+  }
+  else{
+    $("#book_synopsis_"+i).text("synopsis : not available"); 
   };
-  
+  //rating
+  if (result.items[i].volumeInfo.hasOwnProperty("averageRating")) {
+    $("#book_rating_"+i).text( result.items[i].volumeInfo.averageRating + "/5");
+  }
+  else {
+    $("#book_rating_"+i).text("not available");
+  };
 };
 
 //function div diplicator 
@@ -114,6 +140,7 @@ function div_duplicator(i){
       new_book.find("#book_isbn").attr("id", "book_isbn_" + i);
       new_book.find("#book_date").attr("id", "book_date_" + i);
       new_book.find("#book_misc").attr("id", "book_misc_" + i);
+      new_book.find("#book_rating").attr("id", "book_rating_" + i);
       new_book.find("#book_synopsis").attr("id", "book_synopsis_" + i);
       new_book.removeAttr("hidden");
     $("#book_container").append(new_book);
