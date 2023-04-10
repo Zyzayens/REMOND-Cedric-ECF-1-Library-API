@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta title="legal requirement book fetcher" name="legal requirement book fetcher">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" title="legal requirement book fetcher">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--script-->
         <script src="https://kit.fontawesome.com/53b1776084.js" crossorigin="anonymous"></script>
@@ -16,22 +15,21 @@
 <body>
     <header class="position-sticky sticky-top">
         <!--Navbar-->
-            <nav class="navbar row justify-content-between bg-secondary"> <!--top nav w/searchbar-->
+            <nav class="navbar justify-content-evenly bg-secondary"> <!--top nav w/searchbar-->
                 <div class="col-sm-5">
                     <h1>Expand your mind, one page at a time.</h1>
                 </div>
-
                 <div class="col-sm-3">
-                    <!--search form w/ it's button input : "#research"  button : "#research_button " -->
-                    <label for="research_button">
-                    <input class="form-control me-1" id="research" type="search" placeholder="search" aria-label="search field">                  
+                    <!--search form w/ button // input : "#research"  button : "#research_button " -->
+                    <label>
+                    <input class="form-control me-1" id="research" type="search" placeholder="search">                  
                     </label>
                     <button class="btn" id="research_button"> 
-                    <span class="fa-solid fa-magnifying-glass" aria-label="search"></span>
+                    <span class="fa-solid fa-magnifying-glass"></span>
                     </button>
                 </div>
 
-                <div class="col-sm-1"> 
+                <div class="col-sm-2"> 
                     <!--Day/night button-->
                     <button type="button" class="btn border-light-subtle" id="jour_nuit_toggle" aria-hidden="true">
                         <span class="fa fa-sun-o" aria-hidden="true"></span>
@@ -40,7 +38,7 @@
                     </button>
                 </div>
             </nav>
-            <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+            <nav class="navbar navbar-expand-lg bg-body-secondary">
                 <div class="container-fluid">
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -50,7 +48,7 @@
                         <a href="./index.html" class="nav-link">HOME</a>
                         <div class="dropdown">
                             <a class="dropdown-toggle nav-link" href="XXXXXXXX" role="button" data-bs-toggle="dropdown" aria-expanded="false">GENRES</a>
-                            <ul class="dropdown-menu"> <!--change the genres w/ english ones-->
+                            <ul class="dropdown-menu">
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Adventure">Adventure</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Contemporary">Contemporary</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Anticipation">Dystopian</a></li>                                
@@ -65,24 +63,22 @@
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Paranormal">Paranormal</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Prose">Prose</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Romance">Romance</a></li>
-                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Science fiction">Science fiction</a></li>
+                                <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Science&fiction">Science fiction</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Steampunk">Steampunk</a></li>
                                 <li class="list-group-item"><a class="dropdown-item" href="./search_results.html?q=+subject:Thriller">Thriller</a></li>
                             </ul>
                         </div>
-                        <a href="XXXXXXXXX" class="nav-link">BOOKS OF THE WEEK</a> <!--page result with request of books of the week-->
                     </div>
                   </div>
                 </div>
             </nav>
     </header>
-
     <main>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-5 bg-body-secondary mt-3">
-                <h1>LEGAL NOTICES</h1>
-                <h2>WEBSITE PUBLISHER</h2>    
+        <div class="container-fluid ">
+            <div class="row ">
+                <div class="col-sm-5 mx-5 bg-body-secondary mt-3">
+                <h2>LEGAL NOTICES</h2>
+                <h3>WEBSITE PUBLISHER</h3>    
                 <p> Company name: Fictitious Company LLC<br>
                     Address: 123 Fictitious Street, 75000 Paris, France<br>
                     Phone number: +33 1 23 45 67 89<br>
@@ -91,43 +87,37 @@
                     Registration number with the Trade and Companies Register: XXX XXX XXX RCS Paris<br>
                     VAT number: FR XX XXXXXXXX
                 </p>    
-                <h2>PUBLICATION DIRECTOR</h2> 
+                <h3>PUBLICATION DIRECTOR</h3> 
                 <p>Name: Jean Dupont<br>
                    Position: Chief Executive Officer
                 </p>
-                <h2>WEBSITE HOST</h2>
+                <h3>WEBSITE HOST</h3>
                 <p> Company name: Fictitious Hosting<br>
                     Address: 456 Imaginary Street, 69000 Lyon, France<br>
                     Phone number: +33 4 56 78 90 12<br>
                     Email address: contact@fictitioushosting.com<br>
                     Website: www.fictitioushosting.com
                 </p>
-                <h2>INTELLECTUAL PROPERTY</h2>            
+                <h3>INTELLECTUAL PROPERTY</h3>            
                 <p>All elements of the website (texts, images, graphics, logos, icons, etc.) are the exclusive property of Fictitious Company LLC or its partners. Any reproduction, representation, dissemination or exploitation of these elements without prior authorization is prohibited and constitutes an offense punishable by law.</p>    
-                <h2>PERSONAL DATA</h2>
+                <h3>PERSONAL DATA</h3>
                 <p>Fictitious Company LLC undertakes to respect the confidentiality of the personal data of website users and to collect only the information necessary for the proper use of the website. In accordance with the French Data Protection Act of January 6, 1978, users have the right to access, modify and delete their personal data.</p>    
-                <h2>COOKIES</h2>                        
+                <h3>COOKIES</h3>                        
                 <p>The website may use cookies to improve the user experience. Users can accept or refuse cookies during their first visit to the website.</p>           
-                <h2>APPLICABLE LAW AND JURISDICTION</h2>       
+                <h3>APPLICABLE LAW AND JURISDICTION</h3>       
                 <p>These legal notices are governed by French law. In case of dispute, the French courts shall have exclusive jurisdiction.</p>
             </div>
             </div>
         </div>
     </main>
-    <footer class="position-sticky mt-3">
-        <div class="row justify-content-center p-3 bg-secondary-subtle"> 
+    <footer class="container-fluid mt-3 py-2 bg-body-secondary">
+        <div class="row justify-content-evenly">
             <!--div button anchor top-->
-            <div class="col-sm-2">
-                <a href="#" class="nav-link" aria-label="page up"><span class="fa-solid fa-arrow-up border btn btn-outline-secondary"></span></a>
-            </div>
+                <div class="col-auto"><a href="#" class="link-body-emphasis" aria-label="page up"><span class="fa-solid fa-arrow-up border btn btn-outline-secondary"></span></a></div>
             <!--div legal requirement-->
-            <div class="col-sm-2">
-                <a href="./mentions legale.html" class="nav-link">LEGAL NOTICES</a>
-            </div>
+                <div class="col-auto"><a href="./mentions_legale.html" class="link-body-emphasis">LEGAL NOTICES</a></div>
             <!--div contact-->
-            <div class="col-sm-2">
-                <a href="./contact.html" class="nav-link">CONTACT</a>
-            </div>
+                <div class="col-auto"><a href="./contact.html" class="link-body-emphasis">CONTACT</a></div>
         </div>
     </footer>
     <!--scripts here-->
