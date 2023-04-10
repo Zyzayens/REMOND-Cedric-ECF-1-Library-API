@@ -1,17 +1,17 @@
-// day/night
+// day/night mode
 $(document).ready(function(){
   const button_day_night = $("#jour_nuit_toggle");
-  //listener sur le bouton jour/nuit 
+  //listener on the day night button 
   button_day_night.on("click", function(){
-      //condition si light ou dark mode 
+      //check w/ mode is already active 
       if ($("html").attr("data-bs-theme") == "light"){
-          //darkmode
+          // then applies darkmode
           $("html").attr("data-bs-theme","dark");
           $("#jour_nuit_toggle").attr("class", "btn btn-dark border-dark-subtle");
           $("#jour_nuit_toggle_icon").attr("class", "fa fa-toggle-on");
       }
       else {
-          //light mode
+          // then applies light mode
           $("html").attr("data-bs-theme","light");
           $("#jour_nuit_toggle").attr("class", "btn btn-light border-light-subtle");
           $("#jour_nuit_toggle_icon").attr("class", "fa fa-toggle-off");
@@ -19,18 +19,47 @@ $(document).ready(function(){
   });
 });
 
-//send to page search button 
+
+  
+//send to page search button
 $(document).ready(function(){
- const send_to_search_page_button = $("#research_button")
+  //for search bar
+  const send_to_search_page_button = $("#research_button");
   send_to_search_page_button.on("click", function(){
-    let search_field_value = $("#research").val()
+    search_field_value = $("#research").val();
     document.location.href="./search_results.html?q=" + search_field_value;
+  });
+  // for advanced search bar
+ const advanced_send_to_search_page_button = $("#advanced_research_button");
+ advanced_send_to_search_page_button.on("click", function(){
+    let format_flavor;
+    //check the radio button for the flavored format value 
+    if($('#radio_flavor_none').is(':checked')) {  
+      format_flavor = "none"};
+    if($('#radio_flavor_book').is(':checked')) {  
+        format_flavor = "book"};
+    if($('#radio_flavor_ebook').is(':checked')) {  
+        format_flavor = "ebook"};
+    //change the value of the filter parameter
+    switch (format_flavor){
+      case "none" :     
+      search_field_value = $("#avanced_research").val();
+      document.location.href="./search_results.html?q=" + search_field_value;
+      break;
+      case "book" :
+        search_field_value = $("#avanced_research").val();
+        document.location.href="./search_results.html?q=" + search_field_value +"&printType=books" ;
+      break;
+      case "ebook":
+        search_field_value = $("#avanced_research").val();
+        document.location.href="./search_results.html?q=" + search_field_value + "&filter=ebooks";
+      break;
+    }; 
   });
 });
 
 //Page action selector 
 $(document).ready(function(){
-
   //if page index
   if (document.location.pathname.includes("index.html")) {
     for (let j = 0 ; j <3 ; j++) {  
@@ -41,18 +70,14 @@ $(document).ready(function(){
               maxResults : 1 ,
               type : "GET",
               success : function (result){
-              console.log(result);
-              if (result.items[0].volumeInfo.hasOwnProperty("imageLinks")) {
-                $("#book_of_the_moment_" + j).attr("src" , result.items[0].volumeInfo.imageLinks.thumbnail );
-              }
-              else{
-                $("#book_of_the_moment_" + j).attr("src" , "./ressources/404.png" ); //change by img 404 default
-              };
-             },
+                book_of_the_week(result, j)
+              },
               error : function (err){console.log(err)}
           });
-    }
-  }
+    };
+    // book of the moment link to search result page 
+    
+  };
     //if page result
     if (document.location.pathname.includes("search_results.html")) {
       let search_for = location.search;
@@ -62,7 +87,7 @@ $(document).ready(function(){
               type : "GET",
               success : function (result){
               console.log(result);
-              for (let i = 0; i < 10; i++){
+              for (let i = 0; i < result.items.length ; i++){
                 div_duplicator(i);
                 distibutor(i, result);
             }},
@@ -71,13 +96,31 @@ $(document).ready(function(){
         }
 });
 
-//function selector 
+// function book of the week
+function book_of_the_week (result, j){
+    console.log(result);
+    //check if the result has a cover
+    for (let l = 0;  l< result.items.length ; l++ ) {
+    if (result.items[l].volumeInfo.hasOwnProperty("imageLinks")) {
+      $("#book_of_the_moment_img_" + j).attr("src" , result.items[l].volumeInfo.imageLinks.thumbnail );
+      $("#book_of_the_moment_link_" + j).attr("href", "./search_results.html?q=+isbn:" + result.items[l].volumeInfo.industryIdentifiers[0].identifier);
+      $("#book_of_the_moment_title_" + j).text(result.items[l].volumeInfo.title.substring(0,30));
+      $("#book_of_the_moment_title_" + j).attr("class", "text-center");
+
+      break;
+    }
+    };
+  };
+
+//function distributor (distribute the elements of "result" into the matching div) 
 function distibutor (i, result){
+  //check if the result has a cover
   if (result.items[i].volumeInfo.hasOwnProperty("imageLinks")) {
-    $("#book_cover_"+i).attr("src" , result.items[i].volumeInfo.imageLinks.thumbnail );
+    $("#book_cover_img_"+ i).attr("src" , result.items[i].volumeInfo.imageLinks.thumbnail );
   }
   else{
-    $("#book_cover_"+i).attr("src" , "./ressources/404.png" ); //change by img 404 default
+    // else call to function cover generator
+  book_cover_generator( "#book_cover_" + i , i , result);
   };
   //title
   if (result.items[i].volumeInfo.hasOwnProperty("title")) {
@@ -113,27 +156,57 @@ function distibutor (i, result){
   };
   //synopsis
   if (result.items[i].volumeInfo.hasOwnProperty("description")) {
-    $("#book_synopsis_"+i).text( result.items[i].volumeInfo.description);
+    $("#book_synopsis_"+i).text( "Synopsis : "+result.items[i].volumeInfo.description.substring(0,400) + "...");
   }
   else{
-    $("#book_synopsis_"+i).text("synopsis : not available"); 
+    $("#book_synopsis_"+i).text("Synopsis : not available"); 
   };
   //rating
   if (result.items[i].volumeInfo.hasOwnProperty("averageRating")) {
-    $("#book_rating_"+i).text( result.items[i].volumeInfo.averageRating + "/5");
+    $("#book_rating_"+i).text( "Rating : ");
+    rating (i , result); 
   }
   else {
-    $("#book_rating_"+i).text("not available");
+    $("#book_rating_"+i).text(" Rating : not available");
+  };
+  //ebook download 
+  if (result.items[i].volumeInfo.hasOwnProperty("infoLink")){
+    $("#book_ebook_link_" + i).attr("href", result.items[i].volumeInfo.infoLink);
+  }
+  else{
+    $("#book_ebook_link_" + i).remove();
   };
 };
 
-//function div diplicator 
+
+//function book_cover_generator (genrerate a standardized cover for books)
+function book_cover_generator(id, i, result){
+let title_short = result.items[i].volumeInfo.title.substring(0,30);
+$(id).empty();
+$(id).prepend("<div class='bg-primary w-auto h-auto d-flex my-3 mx-1' style='width: 120px!important ; height : 203px!important'><p class='text-wrap align-self-center text-center'>" + title_short + "..." + "</p></div>")
+};
+
+//function rating (translate the rating into the five stars systems)
+function rating (i, result){
+let average_rating_floor = Math.floor(result.items[i].volumeInfo.averageRating);
+for (let k=0 ; k < 5 ; k++){
+  if (average_rating_floor > k){
+  $("#book_rating_"+i).append("<span class='fa-solid fa-star'></span>")
+  }
+  else{
+    $("#book_rating_"+i).append("<span class='fa-regular fa-star'></span>") 
+  }
+};
+};
+
+//function div_duplicator (duplicate the book div for each results we get)
 function div_duplicator(i){
   let original_book = $("#book");
     let new_book = original_book.clone();
     let newId = "book_" + i;
       new_book.attr("id", newId);
       new_book.find("#book_cover").attr("id", "book_cover_" + i);
+      new_book.find("#book_cover_img").attr("id", "book_cover_img_" + i);
       new_book.find("#book_info").attr("id", "book_info_" + i);
       new_book.find("#book_name").attr("id", "book_name_" + i);
       new_book.find("#book_author").attr("id", "book_author_" + i);
@@ -142,6 +215,8 @@ function div_duplicator(i){
       new_book.find("#book_misc").attr("id", "book_misc_" + i);
       new_book.find("#book_rating").attr("id", "book_rating_" + i);
       new_book.find("#book_synopsis").attr("id", "book_synopsis_" + i);
+      new_book.find("#book_ebook_link").attr("id", "book_ebook_link_" + i);
+
       new_book.removeAttr("hidden");
     $("#book_container").append(new_book);
   };
@@ -153,7 +228,7 @@ function div_duplicator(i){
 
   //word list 
   var word_list = [
-    // Borrowed from xkcd password generator which borrowed it from wherever
+    // Borrowed from "random-words" which borrowed it from "xkcd password generator" which borrowed it from wherever
     "ability","able","aboard","about","above","accept","accident","according",
     "account","accurate","acres","across","act","action","active","activity",
     "actual","actually","add","addition","additional","adjective","adult","adventure",
@@ -399,124 +474,3 @@ function div_duplicator(i){
     "year","yellow","yes","yesterday","yet","you","young","younger",
     "your","yourself","youth","zero","zebra","zipper","zoo","zulu"
   ];
-
-// div suplicator 1 
-/*
-  let original_book = $("#book");
-    let new_book = original_book.clone();
-
-    lui 
-    let newId = "book_" + i;
-    new_book.attr("id", newId);
-
-    ou lui 
-    $(".book").attr('id', i => `form-${i}-id`);
-
-
-
-  $("#book-container").append(new_book);
-
-*/
-
-//div duplicator 2
-/*
-var list = $(".formset_id");  
-for (var item in list) {
-   var newID='form'+item+'-id';
-   // skip over special jQuery built-ins unrelated to actual contained elements
-   if(!list.hasOwnProperty(item) || item==='length' || item==='prevObject')
-     continue;
-
-   $(list[item]).attr('id',newID);
-   $(list[item]).html(item);
-}
-*/
-
-// fetch script
-/*$(document).ready(function(){
-    const button_search = $("#research_button");   
-
-    button_search.on("click", function(){
-        let search_for = $("#research").val();
-        let requestURL = "https://openlibrary.org/search.json?q=" + search_for;
-        let book_results=[]; 
-                $.ajax({
-                url : requestURL,
-                type : "GET",
-                success : function (result){
-                console.log(result)},
-                error : function (err){console.log(err)}
-            })
-            console.log(book_results)
-    });
-})
-*/
-
-// reserve 
-/*document.location.href="./search_results.html";
-$(".book_name").text(result.docs[0].title);
-sessionStorage.setItem("result", JSON.stringify(response.result));
-*/
-
-//algo pour p2 
-/*set variables here 
-$.ajax({
-                url : requestURL,
-                type : "GET",
-                success : function (result){
-                console.log(result)},
-                error : function (err){console.log(err)}
-            })
-  $(document).location ="./search_results.html";
-    for (let i = 0; i < 51; i++){
-         remplissage des div 
-         avec i index par livre
-         duplication des div
-    }
-}
-
-*/
-
-//version gpt get + end to search => doesnt work
-/*$(document).ready(function() {
-  if ($("#research").length > 0) { // Vérifie si le formulaire de recherche est présent sur la page 1
-    $("#research").submit(function(event) { // déclenche l'événement lorsque le formulaire est soumis
-      event.preventDefault(); // empêche le formulaire de se soumettre de manière classique
-  
-      var searchTerm = $("#research").val();
-      $.ajax({
-        url: "https://openlibrary.org/search.json?",
-        data: {
-          q: searchTerm
-        },
-        success: function(response) {
-          // stocke les résultats de la recherche dans l'objet sessionStorage de l'API
-          sessionStorage.setItem("Result", JSON.stringify(response.result));
-          
-          // redirige vers la page 2 pour afficher les résultats de la recherche
-          window.location.href = "./search_results.html";
-        },
-        error: function() {
-          alert("Error fetching data from API");
-        }
-      });
-    });
-  }
-  
-  if ($(".book_info").length > 0) { // Vérifie si le conteneur de résultats est présent sur la page 2
-    var result = sessionStorage.getItem("result"); // récupère les résultats de la recherche stockés dans l'objet sessionStorage
-
-    if (result) {
-      var resultArray = JSON.parse(result); // convertit la chaîne JSON en un tableau JavaScript
-      
-      // boucle à travers les résultats et crée un élément HTML pour chaque élément
-      for (var i = 0; i < resultArray.length; i++) {
-        var resultDiv = $("<div>").text(resultArray[i].name); // crée un élément HTML avec la valeur de l'élément "name"
-        $("#book_info").append(resultDiv); // ajoute l'élément à la page 2
-      }
-    } else {
-      alert("No search results found"); // affiche une alerte si aucun résultat de recherche n'est stocké dans l'objet sessionStorage
-    }
-  }
-});
-*/
