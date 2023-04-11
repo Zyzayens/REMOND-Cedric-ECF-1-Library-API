@@ -19,8 +19,6 @@ $(document).ready(function(){
   });
 });
 
-
-  
 //send to page search button
 $(document).ready(function(){
   //for search bar
@@ -61,7 +59,12 @@ $(document).ready(function(){
 //Page action selector 
 $(document).ready(function(){
   //if page index
-  if (document.location.pathname.includes("index.html")) {
+  //if (document.location.pathname.includes("index.html")) {
+  //
+  //TODO URGENT ! : FIX PATHNAME ISSU W/GITHUB PAGE AND ROOT LUNCH
+  
+  //if page index
+  if (document.location.href.includes("index.html")) {
     for (let j = 0 ; j <3 ; j++) {  
       let search_for = "?q=" + random_word_generator(word_list);
       let requestURL = "https://www.googleapis.com/books/v1/volumes" + search_for ;
@@ -79,7 +82,7 @@ $(document).ready(function(){
     
   };
     //if page result
-    if (document.location.pathname.includes("search_results.html")) {
+    if (document.location.href.includes("search_results.html")) {
       let search_for = location.search;
       let requestURL = "https://www.googleapis.com/books/v1/volumes" + search_for;
               $.ajax({
