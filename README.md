@@ -41,28 +41,6 @@ Ces polices sont souvent utilisées pour les sites web car elles sont facilement
 l'utilisation également une taille de police assez grande pour faciliter la lecture est sugérée.
 
 
+Site accessible sur Github Pages à l'adresse :
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Un site web de recommandation de livres basé sur l'API de Goodreads. Goodreads est une plateforme sociale pour les amateurs de livres, où les utilisateurs peuvent noter, commenter et recommander des livres.
-
-En utilisant l'API de Goodreads, vous pourriez créer un site web qui recommande des livres à l'utilisateur en fonction de ses préférences de lecture. Par exemple, votre site pourrait demander à l'utilisateur quels sont ses genres de livres préférés, ses auteurs préférés, ses livres préférés, etc. Ensuite, votre site pourrait récupérer les informations pertinentes sur les livres via l'API de Goodreads, et utiliser des algorithmes de recommandation pour suggérer des livres qui correspondent aux préférences de l'utilisateur.
-
-Vous pourriez également inclure des fonctionnalités telles que la possibilité de noter les livres recommandés, de créer des listes de lecture personnalisées, de suivre les activités des amis sur Goodreads, etc.
-
-Ce type de site web pourrait être très utile pour les amateurs de livres qui cherchent des recommandations personnalisées, ou qui veulent découvrir de nouveaux livres en fonction de leurs préférences de lecture.
+https://zyzayens.github.io/REMOND-Cedric-ECF-1-Library-API/index.html

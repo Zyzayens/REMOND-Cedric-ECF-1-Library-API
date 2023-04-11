@@ -58,11 +58,7 @@ $(document).ready(function(){
 
 //Page action selector 
 $(document).ready(function(){
-  //if page index
-  //if (document.location.pathname.includes("index.html")) {
-  //
-  //TODO URGENT ! : FIX PATHNAME ISSU W/GITHUB PAGE AND ROOT LUNCH
-  
+
   //if page index
   if (document.location.href.includes("index.html")) {
     for (let j = 0 ; j <3 ; j++) {  
@@ -78,7 +74,7 @@ $(document).ready(function(){
               error : function (err){console.log(err)}
           });
     };
-    // book of the moment link to search result page 
+  
     
   };
     //if page result
@@ -109,7 +105,6 @@ function book_of_the_week (result, j){
       $("#book_of_the_moment_link_" + j).attr("href", "./search_results.html?q=+isbn:" + result.items[l].volumeInfo.industryIdentifiers[0].identifier);
       $("#book_of_the_moment_title_" + j).text(result.items[l].volumeInfo.title.substring(0,30));
       $("#book_of_the_moment_title_" + j).attr("class", "text-center");
-
       break;
     }
     };
@@ -131,7 +126,7 @@ function distibutor (i, result){
   };
   //author
   if (result.items[i].volumeInfo.hasOwnProperty("authors")) {
-    $("#book_author_"+i).text("Author : " + result.items[i].authors);
+    $("#book_author_"+i).text("Author : " + result.items[i].volumeInfo.authors);
   }
   else{
     $("#book_author_"+i).text("Author : not available or unknown"); 
