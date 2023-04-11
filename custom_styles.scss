@@ -1,0 +1,30 @@
+// Custom.scss
+//import bootstraps
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+// custom var 
+[data-bs-theme="light"]{
+    --bs-body-font-family : var(--bs-font-sans-serif);
+    --bs-font-sans-serif : "Roboto", "Helvetica Neue";
+};
+    
+[data-bs-theme="dark"]{
+    --bs-body-font-family : var(--bs-font-sans-serif);
+    --bs-font-sans-serif : "Roboto", "Helvetica Neue";
+};
+
+[data-bs-theme="light"] {
+
+    --bs-secondary : #3f5d3e;
+    --bs-secondary-rgb : #{to-rgb(#3f5d3e)};
+
+    --bs-secondary-bg-rgb : #{to-rgb(#f5f5dc)};
+
+    --bs-tertiary-bg : #562B0B;
+    --bs-tertiary-bg-rgb : #{to-rgb(#562B0B)};
+
+    --bs-body-bg : #f7f7f7;
+    --bs-body-bg-rgb : #{to-rgb(#f7f7f7)};
+
+    --bs-border-color : #353848;
+    --bs-border-color-rgb : #{to-rgb(#353848)};
+};
