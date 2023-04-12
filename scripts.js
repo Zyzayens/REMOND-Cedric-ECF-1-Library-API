@@ -60,7 +60,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 
   //if page index
-  if (document.location.href.includes("index.html")) {
+  if (document.location.href.includes("index.html") || $("#index_page_body").attr("id") == "index_page_body") {
     for (let j = 0 ; j <3 ; j++) {  
       let search_for = "?q=" + random_word_generator(word_list);
       let requestURL = "https://www.googleapis.com/books/v1/volumes" + search_for ;
